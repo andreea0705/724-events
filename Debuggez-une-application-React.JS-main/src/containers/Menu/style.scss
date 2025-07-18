@@ -26,6 +26,11 @@ nav {
         color: $black;
       }
     }
+     a:hover{
+      color: $primary;
+      padding-bottom: 5px;
+      border-bottom: $primary 2px solid;
+    }
     padding-right: 50px;
   }
 }
