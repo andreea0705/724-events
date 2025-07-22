@@ -11,7 +11,7 @@
   &.large {
     width: 424px;
     .Select {
-      width: 442px;
+      min-width: 424px;
       ul {
         width: 442px;
       }

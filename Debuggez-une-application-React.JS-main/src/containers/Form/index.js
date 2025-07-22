@@ -8,6 +8,7 @@ const mockContactApi = () => new Promise((resolve) => { setTimeout(resolve, 500)
 
 const Form = ({ onSuccess, onError }) => {
   const [sending, setSending] = useState(false);
+  const [confirmationSent, setConfirmationSent] = useState(false); // Nouvel état pour le message de confirmation
   const sendContact = useCallback(
     async (evt) => {
       evt.preventDefault();
@@ -16,6 +17,8 @@ const Form = ({ onSuccess, onError }) => {
       try {
         await mockContactApi();
         setSending(false);
+        setConfirmationSent(true); // Marquer le message de confirmation comme envoyé
+        onSuccess(); // Appeler la fonction onSuccess lorsque le message est envoyé avec succès
       } catch (err) {
         setSending(false);
         onError(err);
@@ -40,6 +43,8 @@ const Form = ({ onSuccess, onError }) => {
           <Button type={BUTTON_TYPES.SUBMIT} disabled={sending}>
             {sending ? "En cours" : "Envoyer"}
           </Button>
+          {confirmationSent && <div className=""> Message envoyé !</div>}{" "}
+          {/* Afficher le message de confirmation */}
         </div>
         <div className="col">
           <Field
