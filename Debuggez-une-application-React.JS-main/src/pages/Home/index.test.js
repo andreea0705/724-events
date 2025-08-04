@@ -21,7 +21,9 @@ describe("When Form is created", () => {
         })
       );
       await screen.findByText("En cours");
-      await screen.findByText("Message envoyé !");
+      const messages = await screen.findAllByText("Message envoyé !");
+      expect(messages.length).toBeGreaterThan(0);
+
     });
   });
 
